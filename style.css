@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+img {
+  width: 100%;
+}
+
+.artwork-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100vw;
+}
+
+.box {
+  width: 380px;
+  background-color: brown;
+}
