@@ -20,6 +20,7 @@ body {
   background-color: var(--orange);
   color: white;
   margin: 0;
+  height: 1000px;
 }
 
 h1 {
@@ -57,6 +58,7 @@ img {
   justify-content: center;
   width: 100vw;
   margin-top: 85vh;
+  min-height: 100vh;
 }
 
 .box {
@@ -66,10 +68,14 @@ img {
   /* background-color: rgb(205, 138, 138); */
 }
 
-.filter-container {
+.filter-form {
   position: fixed;
-  bottom: 2rem;
+  bottom: 10rem;
   right: 2rem;
+}
+
+label p {
+  margin: 0;
 }
 
 button {
@@ -86,4 +92,8 @@ button {
 button:hover {
   background-color: var(--black);
   cursor: pointer;
+}
+
+.hero img {
+  transition: opacity 1s ease-in-out;
 }

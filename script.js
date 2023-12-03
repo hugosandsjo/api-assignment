@@ -1,77 +1,15 @@
-// const fetchData = async () => {
-//   // Generate a random page number between 1 and 100
-//   const page = Math.floor(Math.random() * 1000) + 1;
-
-//   const res = await fetch(`https://api.artic.edu/api/v1/artworks?page=${page}`);
-//   const data = await res.json();
-//   const iiifUrl = data.config.iiif_url;
-
-//   try {
-//     data.data.forEach((artwork) => {
-//       const imageUrl = `${iiifUrl}/${artwork.image_id}/full/843,1000/0/default.jpg`;
-//       document.querySelector("body").innerHTML += `
-//       <section class="hero">
-//       <img src="${imageUrl}"></section>`;
-//       document.querySelector(
-//         "#artwork-container",
-//       ).innerHTML += `<div class="box">
-//             <img src="${imageUrl}">
-//                 <h2>${artwork.title}</h2>
-//                 <p>${artwork.dimensions}</p>
-//                 <p>${artwork.artwork_type_title}</p>
-//                 <p>${artwork.style_title}</p>
-//             </div>`;
-//     });
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// };
-
-// fetchData();
-
-// document.querySelector("#random-artwork").addEventListener("click", fetchData);
-
-// const fetchData = async () => {
-//   // Generate a random page number between 1 and 100
-//   const page = Math.floor(Math.random() * 1000) + 1;
-
-//   const res = await fetch(`https://api.artic.edu/api/v1/artworks?page=${page}`);
-//   const data = await res.json();
-//   const iiifUrl = data.config.iiif_url;
-
-//   // Clear the body or another container element
-//   document.querySelector("#artwork-container").innerHTML = "";
-
-//   data.data.forEach((artwork) => {
-//     const imageUrl = `${iiifUrl}/${artwork.image_id}/full/843,1000/0/default.jpg`;
-
-//     // Create a new element for each artwork
-//     const artworkElement = document.createElement("div");
-//     artworkElement.innerHTML = `
-//     <section class="hero">
-//     <img src="${imageUrl}"></section>
-//     <div class="box">
-//           <img src="${imageUrl}">
-//               <h2>${artwork.title}</h2>
-//               <p>${artwork.dimensions}</p>
-//               <p>${artwork.artwork_type_title}</p>
-//               <p>${artwork.style_title}</p>
-//     </div>`;
-
-//     // Append the new element to the body or another container element
-//     document.querySelector("#artwork-container").appendChild(artworkElement);
-//   });
-// };
-
-// fetchData();
-
-// document.querySelector("#random-artwork").addEventListener("click", fetchData);
+let imageUrls = [];
 
 const fetchData = async () => {
   try {
+    const checkboxes = document.querySelectorAll(
+      '#filter-form input[type="checkbox"]',
+    );
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
     // Generate a random page number between 1 and 100
     const page = Math.floor(Math.random() * 1000) + 1;
-
     const res = await fetch(
       `https://api.artic.edu/api/v1/artworks?page=${page}`,
     );
@@ -120,3 +58,69 @@ fetchData();
 document.querySelector("#random-artwork").addEventListener("click", fetchData);
 
 // Filter logic
+
+function getCheckedValues() {
+  const checkboxes = document.querySelectorAll(
+    '#filter-form input[type="checkbox"]:checked',
+  );
+  let values = [];
+  checkboxes.forEach((checkbox) => {
+    values.push(checkbox.value);
+  });
+  return values;
+}
+
+function filterArtworks() {
+  // Get the checked values
+  const checkedValues = getCheckedValues();
+
+  // Get all the boxes
+  const boxes = document.querySelectorAll(".box");
+
+  // If no checkbox is checked, show all boxes and return
+  if (checkedValues.length === 0) {
+    boxes.forEach((box) => {
+      box.style.display = "block";
+    });
+    return;
+  }
+
+  // For each box, check if its artwork type title is in the checked values
+  boxes.forEach((box) => {
+    const artworkTypeTitle = box.querySelector("p:last-child").textContent;
+
+    if (checkedValues.includes(artworkTypeTitle)) {
+      // If the artwork type title is in the checked values, display the box
+      box.style.display = "block";
+    } else {
+      // If the artwork type title is not in the checked values, hide the box
+      box.style.display = "none";
+    }
+  });
+}
+
+document
+  .querySelector("#filter-form")
+  .addEventListener("change", filterArtworks);
+
+// Hero animation
+
+let currentImageIndex = 0;
+const heroImageElement = document.querySelector(".hero img");
+
+// Function to change the hero image
+function changeHeroImage() {
+  // Get the new image URL
+  const newImageUrl = `${iiifUrl}/${data.data[currentImageIndex].image_id}/full/843,1000/0/default.jpg`;
+
+  // Set the new image URL as the source of the hero image
+  heroImageElement.src = newImageUrl;
+
+  // Update the current image index
+  currentImageIndex = (currentImageIndex + 1) % data.data.length;
+}
+
+// Change the hero image every 5 seconds (12 images over 1 minute)
+setInterval(changeHeroImage, 5000);
+
+changeHeroImage();
