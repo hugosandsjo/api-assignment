@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --orange: #ff5722;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -11,7 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ff5722;
+  background-color: var(--orange);
   color: white;
   margin: 0;
 }
