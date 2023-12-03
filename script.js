@@ -102,25 +102,3 @@ function filterArtworks() {
 document
   .querySelector("#filter-form")
   .addEventListener("change", filterArtworks);
-
-// Hero animation
-
-let currentImageIndex = 0;
-const heroImageElement = document.querySelector(".hero img");
-
-// Function to change the hero image
-function changeHeroImage() {
-  // Get the new image URL
-  const newImageUrl = `${iiifUrl}/${data.data[currentImageIndex].image_id}/full/843,1000/0/default.jpg`;
-
-  // Set the new image URL as the source of the hero image
-  heroImageElement.src = newImageUrl;
-
-  // Update the current image index
-  currentImageIndex = (currentImageIndex + 1) % data.data.length;
-}
-
-// Change the hero image every 5 seconds (12 images over 1 minute)
-setInterval(changeHeroImage, 5000);
-
-changeHeroImage();

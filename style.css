@@ -68,21 +68,13 @@ img {
   /* background-color: rgb(205, 138, 138); */
 }
 
-.filter-form {
-  position: fixed;
-  bottom: 10rem;
-  right: 2rem;
-}
-
-label p {
+/* label p {
   margin: 0;
-}
+} */
 
 button {
   padding: 1rem;
-  /* border-radius: 2rem; */
   border: 0.2rem var(--white) solid;
-  position: fixed;
   bottom: 2rem;
   right: 2rem;
   background-color: var(--orange);
@@ -96,4 +88,30 @@ button:hover {
 
 .hero img {
   transition: opacity 1s ease-in-out;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0rem;
+  padding: 2rem;
+  width: 100%;
+  background-color: var(--orange);
+  border-top: 1px solid var(--white);
+}
+
+.input-wrapper {
+  margin-right: 0.3rem;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60rem;
+}
+
+label {
+  font-size: 1rem;
 }
