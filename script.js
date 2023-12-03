@@ -81,16 +81,18 @@ const fetchData = async () => {
     // Clear the body or another container element
     document.querySelector("#artwork-container").innerHTML = "";
 
+    // Create a new element for the hero section using the first artwork
+    const firstArtwork = data.data[0];
+    const heroImageUrl = `${iiifUrl}/${firstArtwork.image_id}/full/843,1000/0/default.jpg`;
+    const heroElement = document.createElement("section");
+    heroElement.className = "hero";
+    heroElement.innerHTML = `<img src="${heroImageUrl}">`;
+
+    // Append the hero section to the body
+    document.querySelector("body").appendChild(heroElement);
+
     data.data.forEach((artwork) => {
       const imageUrl = `${iiifUrl}/${artwork.image_id}/full/843,1000/0/default.jpg`;
-
-      // Create a new element for the hero section
-      const heroElement = document.createElement("section");
-      heroElement.className = "hero";
-      heroElement.innerHTML = `<img src="${imageUrl}">`;
-
-      // Append the hero section to the body
-      document.querySelector("body").appendChild(heroElement);
 
       // Create a new element for the box
       const boxElement = document.createElement("div");
@@ -116,3 +118,5 @@ const fetchData = async () => {
 fetchData();
 
 document.querySelector("#random-artwork").addEventListener("click", fetchData);
+
+// Filter logic

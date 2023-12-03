@@ -66,6 +66,12 @@ img {
   /* background-color: rgb(205, 138, 138); */
 }
 
+.filter-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
 button {
   padding: 1rem;
   /* border-radius: 2rem; */
