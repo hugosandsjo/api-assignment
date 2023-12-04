@@ -16,6 +16,12 @@ const fetchData = async () => {
     const res = await fetch(
       `https://api.artic.edu/api/v1/artworks?page=${page}`,
     );
+    if (!res.ok && (res.status === 403 || res.status === 404)) {
+      console.log(
+        `HTTP error! status: ${res.status}. Fetching new set of artworks...`,
+      );
+      return fetchData();
+    }
     const data = await res.json();
     const iiifUrl = data.config.iiif_url;
 
@@ -37,9 +43,10 @@ const fetchData = async () => {
 
       // Create a new element for the box
       const boxElement = document.createElement("div");
+      // Onerror replaces images that arent able to load with an image of a cat
       boxElement.className = "box";
       boxElement.innerHTML = `
-            <img src="${imageUrl}">
+            <img src="${imageUrl}" onerror="this.onerror=null; this.src='assets/cat.png';"> 
             <h2>${artwork.title}</h2>
             <p>${artwork.dimensions}</p>
             <p>${artwork.artwork_type_title}</p>`;
@@ -49,10 +56,6 @@ const fetchData = async () => {
     });
   } catch (error) {
     console.error(error);
-    // If a 403 or 404 error occurs, call the fetchData function again to load another set of artworks
-    if (error.status === 403 || error.status === 404) {
-      fetchData();
-    }
   }
 };
 
