@@ -70,7 +70,7 @@ img {
 
 button {
   padding: 1rem;
-  border: 0.2rem var(--white) solid;
+  border: 0.1rem var(--white) solid;
   background-color: var(--orange);
   color: var(--white);
 }
@@ -87,9 +87,10 @@ button:hover {
 .form-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   position: fixed;
   bottom: 0rem;
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
   background-color: var(--orange);
   border-top: 1px solid var(--white);
@@ -103,19 +104,23 @@ button:hover {
 form {
   display: flex;
   flex-wrap: wrap;
-  max-width: 60rem;
+  max-width: 50rem;
 }
 
 label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .form-wrapper {
     padding: 1rem;
   }
 
   label {
     font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 4rem;
   }
 }

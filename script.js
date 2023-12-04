@@ -8,8 +8,11 @@ const fetchData = async () => {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
-    // Generate a random page number between 1 and 100
+
+    // Generate a random page number between 1 and 1000
     const page = Math.floor(Math.random() * 1000) + 1;
+
+    // Fetch
     const res = await fetch(
       `https://api.artic.edu/api/v1/artworks?page=${page}`,
     );
