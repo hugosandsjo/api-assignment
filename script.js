@@ -1,4 +1,4 @@
-let imageUrls = [];
+// FetchData function
 
 const fetchData = async () => {
   try {

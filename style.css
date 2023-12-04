@@ -20,7 +20,6 @@ body {
   background-color: var(--orange);
   color: white;
   margin: 0;
-  height: 1000px;
 }
 
 h1 {
@@ -56,27 +55,22 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  /* align-items: center; */
   width: 100vw;
   margin-top: 85vh;
   min-height: 100vh;
+  margin-bottom: 10rem;
 }
 
 .box {
   width: 380px;
-  /* border: 1px solid white; */
-  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
-  /* background-color: rgb(205, 138, 138); */
-}
 
-/* label p {
-  margin: 0;
-} */
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+}
 
 button {
   padding: 1rem;
   border: 0.2rem var(--white) solid;
-  bottom: 2rem;
-  right: 2rem;
   background-color: var(--orange);
   color: var(--white);
 }
@@ -113,5 +107,15 @@ form {
 }
 
 label {
-  font-size: 1rem;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 600px) {
+  .form-wrapper {
+    padding: 1rem;
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
 }
